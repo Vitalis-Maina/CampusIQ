@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Students</title>
+</head>
+<body>
+    <style>
+        body,h2{
+            justify-content: center;
+            align-items: center;
+            display: grid;
+            color: #fff;
+            background-color: rgb(165, 187, 180);
+        }
+        table,th,td{
+            border-style:solid;
+            color: rgb(27, 27, 27);
+            border-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5%;
+        }
+    </style>
+    <section>
+        <h2>StudentList</h2>
+        <Table>
+            <tr>
+        
+            <th>Student Name</th>
+            <th>Course ID</th>
+            <th>Department ID</th>
+            </tr>
+       {{range .Students}}
+       <tr>
+        <td> {{.Name}} </td>
+        <td> {{.CourseID}}</td> 
+        <td>{{.DepartmentID}}</td>
+        </tr>
+
+       {{end}}
+      
+        </Table>
+    </section> 
+   
+</body>
+</html>
