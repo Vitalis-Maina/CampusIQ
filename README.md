@@ -27,7 +27,7 @@ To clone the UMS project repository using SSH and access the UI version, follow 
 
 4. Run the following command to clone the repository:
  ```bash
- gt clone git@github.com:Vitalis-Maina/CampusIQ.git
+ git clone git@github.com:Vitalis-Maina/CampusIQ.git
 ```
 5. Provide your SSH passphrase, if prompted.
 6. The repository will be cloned to your local machine, including the UMS folder.
