@@ -41,8 +41,13 @@ type Units struct {
 	LecturerID int64  `json:"lecturer_id"`
 }
 type StudentUnits struct {
-	StudentID int64 `json:"student_id"`
-	UnitID    int64 `json:"unit_id"`
+	StudentID  int    `json:"student_id"`
+	UnitID     int    `json:"unit_id"`
+	Name       string `json:"name"`
+	UnitName   string `json:"unit_name"`
+	CourseID   int    `json:"course_id"`
+	CourseName string `json:"course_name"`
+	Category   string `json:"category"`
 }
 
 func (app *application) showStudent(w http.ResponseWriter, r *http.Request) {
@@ -134,6 +139,22 @@ func (app *application) showUnits(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (app *application) showStudelntUnits(w http.ResponseWriter, r *http.Request) {
+	studentunits, err := app.models.GetStudentUnits()
+	if err != nil {
+		http.Error(w, "failed to fetch student units", http.StatusInternalServerError)
+	}
+	data := UMSData{StudentUnits: studentunits}
+
+	tmpl, err := template.ParseFiles("./ui/static/studentUnits.html")
+	if err != nil {
+		http.Error(w, "failed to parse files", http.StatusInternalServerError)
+	}
+	err = tmpl.Execute(w, data)
+	if err != nil {
+		http.Error(w, "failed to execute template", http.StatusInternalServerError)
+	}
+}
 func (app *application) showStudentUnits(w http.ResponseWriter, r *http.Request) {
 	studentunits, err := app.models.GetStudentUnits()
 	if err != nil {
@@ -629,51 +650,52 @@ func (app *application) insertUnit(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (app *application) insertStudentUnit(w http.ResponseWriter, r *http.Request) {
-	var studentUnit StudentUnits
-	if r.Method == "GET" {
-		tmpl, err := template.ParseFiles("./ui/static/createStudentUnit.html")
-		if err != nil {
-			http.Error(w, "failed to load template", http.StatusInternalServerError)
-		}
-		err = tmpl.Execute(w, nil)
-		if err != nil {
-			http.Error(w, "failed to render template", http.StatusInternalServerError)
-			return
-		}
-	} else if r.Method == "POST" {
+/*
+	func (app *application) insertStudentUnit(w http.ResponseWriter, r *http.Request) {
+		var studentUnit StudentUnits
+		if r.Method == "GET" {
+			tmpl, err := template.ParseFiles("./ui/static/createStudentUnit.html")
+			if err != nil {
+				http.Error(w, "failed to load template", http.StatusInternalServerError)
+			}
+			err = tmpl.Execute(w, nil)
+			if err != nil {
+				http.Error(w, "failed to render template", http.StatusInternalServerError)
+				return
+			}
+		} else if r.Method == "POST" {
 
-		r.ParseForm()
+			r.ParseForm()
 
-		student_id := r.Form.Get("student_id")
-		unit_id := r.Form.Get("unit_id")
+			student_id := r.Form.Get("student_id")
+			unit_id := r.Form.Get("unit_id")
 
-		if student_id == "" || unit_id == "" {
-			http.Error(w, "cannot be empty", http.StatusBadRequest)
-			return
-		}
-		studentID, err := strconv.ParseInt(student_id, 10, 64)
-		if err != nil {
-			http.Error(w, "invalid student id", http.StatusBadRequest)
-		}
-		unitID, err := strconv.ParseInt(unit_id, 10, 64)
-		if err != nil {
-			http.Error(w, "invalid unit id", http.StatusBadRequest)
-		}
-		studentUnit = StudentUnits{
-			StudentID: studentID,
-			UnitID:    unitID,
-		}
-		err = app.models.InsertStudentUnit(data.StudentUnits(studentUnit))
-		if err != nil {
-			http.Error(w, "Failed to insert student unit", http.StatusInternalServerError)
-			return
-		}
+			if student_id == "" || unit_id == "" {
+				http.Error(w, "cannot be empty", http.StatusBadRequest)
+				return
+			}
+			studentID, err := strconv.ParseInt(student_id, 10, 64)
+			if err != nil {
+				http.Error(w, "invalid student id", http.StatusBadRequest)
+			}
+			unitID, err := strconv.ParseInt(unit_id, 10, 64)
+			if err != nil {
+				http.Error(w, "invalid unit id", http.StatusBadRequest)
+			}
+			studentUnit = StudentUnits{
+				StudentID: studentID,
+				UnitID:    unitID,
+			}
+			err = app.models.InsertStudentUnit(data.StudentUnits(studentUnit))
+			if err != nil {
+				http.Error(w, "Failed to insert student unit", http.StatusInternalServerError)
+				return
+			}
 
-		fmt.Fprintln(w, "StudentUnit inserted successfully")
-	} else {
-		http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
-	}
+			fmt.Fprintln(w, "StudentUnit inserted successfully")
+		} else {
+			http.Error(w, "method not allowed", http.StatusMethodNotAllowed)
+		}
 
 }
 
@@ -735,7 +757,7 @@ func (app *application) updateStudentUnit(w http.ResponseWriter, r *http.Request
 	}
 
 }
-
+*/
 func (app *application) updateStudent(w http.ResponseWriter, r *http.Request) {
 
 	if r.Method == "GET" {

@@ -1,6 +1,8 @@
 package main
 
 import (
+	"net/http"
+
 	"github.com/gorilla/mux"
 )
 
@@ -8,7 +10,7 @@ func (app *application) routes() *mux.Router {
 	router := mux.NewRouter()
 
 	// Home route
-	//router.HandleFunc("/", home).Methods("GET")
+	// router.HandleFunc("/", app.home).Methods("GET")
 
 	// Student routes
 	studentRoutes := router.PathPrefix("/v1/students").Subrouter()
@@ -54,9 +56,11 @@ func (app *application) routes() *mux.Router {
 	studentUnitRoutes := router.PathPrefix("/v1/studentunits").Subrouter()
 	studentUnitRoutes.HandleFunc("/", app.showStudentUnits).Methods("GET")
 
-	studentUnitRoutes.HandleFunc("/create", app.insertStudentUnit)
-	studentUnitRoutes.HandleFunc("/update", app.updateStudentUnit)
+	// studentUnitRoutes.HandleFunc("/create", app.insertStudentUnit)
+	// studentUnitRoutes.HandleFunc("/update", app.updateStudentUnit)
 	studentUnitRoutes.HandleFunc("/delete", app.deleteStudentUnit)
+	fileServer := http.FileServer(http.Dir("./ui/static/"))
+	router.Handle("/", http.StripPrefix("", fileServer))
 
 	return router
 }

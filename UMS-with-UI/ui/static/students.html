@@ -8,17 +8,94 @@
 <body>
     <style>
         body,h2{
+            box-sizing: border-box;
             justify-content: center;
             align-items: center;
-            display: grid;
+            display: flex;
+            flex-direction: column;
             color: #fff;
-            background-color: rgb(165, 187, 180);
+            background-color: rgb(165, 187, 180);          
+          /* background-color:#9ACD32 */
         }
-        table,th,td{
+        table{
             border-style:solid;
+            display: flex;
             color: rgb(27, 27, 27);
             border-color: rgba(255, 255, 255, 0.1);
-            border-radius: 5%;
+            border-radius: 1%;
+            width: 100%;
+        }
+        tr,th,td {
+            padding: 20px;
+            margin: 30px;
+        }
+       
+       
+        .edit{
+            height: 45px;
+            width: 15%;
+            border: none;
+            margin: 10px;
+            border-radius: 30px;
+            display: flex;
+            position:absolute;
+            color: #fff;
+            font-size: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            
+            outline: none;
+            margin-left: 250px;
+            margin-top: -500px;
+            align-items: center;
+            justify-content: center;
+           
+        }
+        .create{
+            height: 45px;
+            width: 15%;
+            border: none;
+            margin: 10px;
+            border-radius: 30px;
+            display: flex;
+            position:absolute;
+            color: #fff;
+            font-size: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            
+            outline: none;
+            margin-left: 250px;
+            margin-top: -550px;
+            align-items: center;
+            justify-content: center;
+
+        }
+        .delete{
+
+            height: 45px;
+            width: 15%;
+            border: none;
+            margin: 10px;
+            align-items: center;
+            justify-content: center;
+            border-radius: 30px;
+            display: flex;
+            position: absolute;
+            color: #fff;
+            font-size: 15px;
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            
+            outline: none;
+            margin-left: 250px;
+            margin-top: -450px;
+        }
+        a{
+            color: #fff;
+                      text-decoration: none;
+
+
         }
     </style>
     <section>
@@ -41,6 +118,13 @@
       
         </Table>
     </section> 
+  
+        <a href="/v1/students/create">  <button  class="create"> ADD RECORD</button> </a>
+        <a href="/v1/students/update">  <button  class="edit"> EDIT RECORD</button> </a>
+        <a href="/v1/students/delete">  <button  class="delete"> DELETE RECORD</button> </a>
+    
+   
+   
    
 </body>
 </html>

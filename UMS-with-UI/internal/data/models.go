@@ -36,12 +36,19 @@ type Units struct {
 	CourseID   int64  `json:"course_id"`
 	LecturerID int64  `json:"lecturer_id"`
 }
-type StudentUnits struct {
-	StudentID int64 `json:"student_id"`
-	UnitID    int64 `json:"unit_id"`
-}
+
 type UmsModel struct {
 	DB *sql.DB
+}
+
+type StudentUnits struct {
+	StudentID  int    `json:"student_id"`
+	UnitID     int    `json:"unit_id"`
+	Name       string `json:"name"`
+	UnitName   string `json:"unit_name"`
+	CourseID   int    `json:"course_id"`
+	CourseName string `json:"course_name"`
+	Category   string `json:"category"`
 }
 
 func NewModels(db *sql.DB) UmsModel {
@@ -139,6 +146,51 @@ func (u UmsModel) InsertStudentUnit(studentUnit StudentUnits) error {
 	}
 
 	return nil
+}
+
+func (u UmsModel) GetStudentUnits() ([]StudentUnits, error) {
+	query := `
+	SELECT
+    student_id,
+    unit_id,
+    name,
+    unit_name,
+    course_id,
+    course_name,
+    category
+FROM
+new_table;
+
+			
+	`
+
+	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
+	defer cancel()
+
+	rows, err := u.DB.QueryContext(ctx, query)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+
+	newTableData := []StudentUnits{}
+
+	for rows.Next() {
+		var su StudentUnits
+
+		err := rows.Scan(&su.StudentID, &su.UnitID, &su.Name, &su.UnitName, &su.CourseID, &su.CourseName, &su.Category)
+		if err != nil {
+			return nil, err
+		}
+
+		newTableData = append(newTableData, su)
+	}
+
+	if err := rows.Err(); err != nil {
+		return nil, err
+	}
+
+	return newTableData, nil
 }
 
 func (u UmsModel) GetStudents() ([]Student, error) {
@@ -302,7 +354,7 @@ func (u UmsModel) GetUnits() ([]Units, error) {
 	return units, nil
 }
 
-func (u UmsModel) GetStudentUnits() ([]StudentUnits, error) {
+func (u UmsModel) GetStudenUnits() ([]StudentUnits, error) {
 	query := `SELECT student_id, unit_id FROM StudentUnits`
 
 	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)

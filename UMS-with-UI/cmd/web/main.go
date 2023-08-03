@@ -32,9 +32,15 @@ type application struct {
 }
 
 func main() {
+
+	// mux := http.NewServeMux()
+	// mux.HandleFunc("/", home)
+	// mux.HandleFunc("/snippet", showSnippet)
+	// mux.HandleFunc("/snippet/create", createSnippet)
+
 	var cfg Config
 
-	flag.IntVar(&cfg.Port, "port", 9009, "api server port")
+	flag.IntVar(&cfg.Port, "port", 9000, "api server port")
 	flag.StringVar(&cfg.db.dns, "db-dns", os.Getenv("UMS_DB_DNS"), "Postgres DNS")
 
 	flag.IntVar(&cfg.db.maxOpenConns, "db-max-open-conns", 25, "PostgreSQL max open connections")
@@ -92,3 +98,5 @@ func connDB(cfg Config) (*sql.DB, error) {
 	}
 	return db, nil
 }
+
+// ?
