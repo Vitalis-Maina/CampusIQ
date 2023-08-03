@@ -11,7 +11,7 @@ University Management System (UMS) is a web application with a user interface th
 
 ## GitHub Repository
 
-The source code for the UMS project can be found on [GitHub](https://github.com:Vitalis-Maina/CampusIQ).
+The source code for the UMS project can be found on GitHub: [UMS GitHub Repository](https://github.com/Vitalis-Maina/CampusIQ)
 
 ## Cloning the Repository
 
@@ -87,7 +87,7 @@ The UMS provides different endpoints to interact with the system. Below are the 
 
 ## Contributions
 
-Contributions to the University Management System project are welcome! If you encounter any issues or have suggestions for improvements, please feel free to submit an issue or a pull request on the [UMS GitHub Repository](https://github.com:Vitalis-Maina/CampusIQ).
+Contributions to the University Management System project are welcome! If you encounter any issues or have suggestions for improvements, please feel free to submit an issue or a pull request on the[UMS GitHub Repository](https://github.com/Vitalis-Maina/CampusIQ)
 
 ## Acknowledgements
 
