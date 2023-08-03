@@ -48,7 +48,6 @@ type StudentUnits struct {
 	UnitName   string `json:"unit_name"`
 	CourseID   int    `json:"course_id"`
 	CourseName string `json:"course_name"`
-	Category   string `json:"category"`
 }
 
 func NewModels(db *sql.DB) UmsModel {
@@ -135,11 +134,11 @@ func (u UmsModel) InsertUnit(unit Units) error {
 
 func (u UmsModel) InsertStudentUnit(studentUnit StudentUnits) error {
 	query := `
-		INSERT INTO StudentUnits(student_id, unit_id)
+		INSERT INTO new_table(student_id, unit_id,name,unit_name,course_id,course_name)
 		VALUES($1, $2)
 	`
 
-	_, err := u.DB.Exec(query, studentUnit.StudentID, studentUnit.UnitID)
+	_, err := u.DB.Exec(query, studentUnit.StudentID, studentUnit.UnitID, studentUnit.Name, studentUnit.UnitName, studentUnit.CourseID, studentUnit.CourseName)
 	if err != nil {
 		log.Println("Failed to insert student unit:", err)
 		return err
@@ -156,8 +155,7 @@ func (u UmsModel) GetStudentUnits() ([]StudentUnits, error) {
     name,
     unit_name,
     course_id,
-    course_name,
-    category
+    course_name
 FROM
 new_table;
 
@@ -178,7 +176,7 @@ new_table;
 	for rows.Next() {
 		var su StudentUnits
 
-		err := rows.Scan(&su.StudentID, &su.UnitID, &su.Name, &su.UnitName, &su.CourseID, &su.CourseName, &su.Category)
+		err := rows.Scan(&su.StudentID, &su.UnitID, &su.Name, &su.UnitName, &su.CourseID, &su.CourseName)
 		if err != nil {
 			return nil, err
 		}
@@ -352,38 +350,6 @@ func (u UmsModel) GetUnits() ([]Units, error) {
 	}
 
 	return units, nil
-}
-
-func (u UmsModel) GetStudenUnits() ([]StudentUnits, error) {
-	query := `SELECT student_id, unit_id FROM StudentUnits`
-
-	ctx, cancel := context.WithTimeout(context.Background(), 3*time.Second)
-	defer cancel()
-
-	rows, err := u.DB.QueryContext(ctx, query)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-
-	studentUnits := []StudentUnits{}
-
-	for rows.Next() {
-		var su StudentUnits
-
-		err := rows.Scan(&su.StudentID, &su.UnitID)
-		if err != nil {
-			return nil, err
-		}
-
-		studentUnits = append(studentUnits, su)
-	}
-
-	if err := rows.Err(); err != nil {
-		return nil, err
-	}
-
-	return studentUnits, nil
 }
 
 func (u UmsModel) DeleteStudent(studentName string) error {
