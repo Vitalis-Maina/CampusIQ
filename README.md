@@ -36,7 +36,6 @@ To clone the UMS project repository using SSH and access the UI version, follow 
 The University Management System is built using the following technologies:
 
 - Go: Programming language used for backend development.
-- Gorilla Mux: A powerful HTTP router and URL matcher for building Go web applications. It is used for handling routing in the UMS project.
 - PostgreSQL: A popular open-source relational database management system used for storing and managing data in the UMS project.
 - Go Templates and HTML: The UI of the UMS project is built using Go templates and HTML.
 
