@@ -2,6 +2,7 @@
 
 University Management System (UMS) is a web application with a user interface that allows users to perform CRUD (Create, Read, Update, Delete) operations for managing university-related data. It provides functionality to manage students, departments, courses, lecturers, units, and student-unit relationships.
 
+![UMS UI](UMS-with-UI/pics/s1.png)
 ![UMS UI](UMS-with-UI/pics/create.png) ![UMS UI](UMS-with-UI/pics/list.png)
 ![UMS UI](UMS-with-UI/pics/update.png) ![UMS UI](UMS-with-UI/pics/delete.png)
 
