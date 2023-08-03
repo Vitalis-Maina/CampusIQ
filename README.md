@@ -11,7 +11,8 @@ University Management System (UMS) is a web application with a user interface th
 
 ## GitHub Repository
 
-The source code for the UMS project can be found on [GitHub](https://github.com/Vitalis-Maina/Project2).
+The source code for the UMS project can be found on [GitHub](https://github.com:Vitalis-Maina/CampusIQ).
+git@github.com:Vitalis-Maina/CampusIQ.git
 
 ## Cloning the Repository
 
@@ -21,12 +22,12 @@ To clone the UMS project repository using SSH and access the UI version, follow 
 2. Navigate to the directory where you want to clone the repository.
 3. Copy the SSH URL of the repository from the GitHub page:
   ```bash 
-  git@github.com:Vitalis-Maina/Project2.git
+  git@github.com:Vitalis-Maina/CampusIQ.git
  ```
 
 4. Run the following command to clone the repository:
  ```bash
- git clone git@github.com:Vitalis-Maina/Project2.git
+ gt clone git@github.com:Vitalis-Maina/CampusIQ.git
 ```
 5. Provide your SSH passphrase, if prompted.
 6. The repository will be cloned to your local machine, including the UMS folder.
@@ -88,7 +89,7 @@ The UMS provides different endpoints to interact with the system. Below are the 
 
 ## Contributions
 
-Contributions to the University Management System project are welcome! If you encounter any issues or have suggestions for improvements, please feel free to submit an issue or a pull request on the [UMS GitHub Repository](https://github.com/Vitalis-Maina/Project2).
+Contributions to the University Management System project are welcome! If you encounter any issues or have suggestions for improvements, please feel free to submit an issue or a pull request on the [UMS GitHub Repository](https://github.com:Vitalis-Maina/CampusIQ).
 
 ## Acknowledgements
 
