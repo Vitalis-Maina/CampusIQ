@@ -35,7 +35,8 @@ The University Management System is built using the following technologies:
 - Go: Programming language used for backend development.
 - PostgreSQL: A popular open-source relational database management system used for storing and managing data in the UMS project.
 - Go Templates and HTML: The UI of the UMS project is built using Go templates and HTML.
-
+## License
+You are free to use this content and code for personal education purposes. However, you are not authorized to publish this content or code elsewhere, whether for commercial purposes or not.
 
 
 ## Contributions
